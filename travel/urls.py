@@ -6,5 +6,5 @@ from travel.views import get_distribution_view
 
 app_name='travel'
 urlpatterns = [
-    path('/', get_distribution_view),
+    path('get-distribution-view/', get_distribution_view),
 ]
