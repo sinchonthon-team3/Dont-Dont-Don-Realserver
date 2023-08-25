@@ -44,10 +44,11 @@ def get_random_money(request):
     sum = 0
 
     # 0 ~ 20 이렇게 설정해놓고 난수 뽑아서 각자 인덱스에 넣어주기!
-    for i in range(parti_len):
-        temp = randint(0, 20)
-        random_index_list.append(temp)
-        sum += temp
+    while (sum == 0):
+        for i in range(parti_len):
+            temp = randint(0, 20)
+            random_index_list.append(temp)
+            sum += temp 
 
     total_list = []
     for i in range(parti_len):
