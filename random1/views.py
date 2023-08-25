@@ -4,7 +4,7 @@ from django.contrib.auth import get_user_model
 
 from rest_framework import generics
 from rest_framework_simplejwt.views import TokenObtainPairView
-from .serializers import UserRegisterSerializer, CustomTokenObtainPairSerializer
+from .serializers import UserRegisterSerializer
 
 from rest_framework.decorators import api_view, permission_classes
 from django.core.exceptions import ObjectDoesNotExist
@@ -68,7 +68,6 @@ def get_random_money(request):
         temp['change_pay'] = total_list[i][0]
         temp["percentage"] = total_list[i][1]
         user.append(temp)
-
 
     final_result = {}  # map으로
     # final_result["normal"] = math.ceil(total_cost / parti_len)
