@@ -4,7 +4,7 @@ from django.contrib.auth import get_user_model
 
 from rest_framework import generics
 from rest_framework_simplejwt.views import TokenObtainPairView
-from .serializers import UserRegisterSerializer
+from .serializers import UserRegisterSerializer, CustomTokenObtainPairSerializer
 
 from rest_framework.decorators import api_view, permission_classes
 from django.core.exceptions import ObjectDoesNotExist
@@ -23,7 +23,11 @@ class UserRegisterView(generics.CreateAPIView):
     
 # 로그인
 class CustomTokenObtainPairView(TokenObtainPairView):
-    pass  
+    pass
+
+
+
+
 
 ###################### view 만들기 ######################
 
@@ -57,10 +61,21 @@ def get_random_money(request):
         total_list.append([cost, round(percent, 1)])  # [가격, 퍼센트] 
 
 
-    final_result = {}  # map으로
-    final_result["normal"] = math.ceil(total_cost / parti_len)
+    user = []
     for i in range(parti_len):
-        final_result[participants[i]] = total_list[i]
+        temp = {}
+        temp["name"] = participants[i]
+        temp['change_pay'] = total_list[i][0]
+        temp["percentage"] = total_list[i][1]
+        user.append(temp)
+
+
+    final_result = {}  # map으로
+    # final_result["normal"] = math.ceil(total_cost / parti_len)
+    # for i in range(parti_len):
+    #     final_result[participants[i]] = total_list[i]
+    final_result["user"] = user
+    final_result["default"] = math.ceil(total_cost / parti_len)
 
     # 클라이언트에게 결과 보내주기
     return Response(final_result, status=status.HTTP_200_OK)

@@ -24,3 +24,13 @@ class UserRegisterSerializer(serializers.ModelSerializer):
             nickname=validated_data.get('nickname', ''),
         )
         return user
+    
+
+# from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+
+# class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
+#     def validate(self, attrs):
+#         data = super().validate(attrs)
+#         print("Nickname:", self.user.nickname)  # 닉네임이 출력되는지 확인
+#         data['nickname'] = self.user.nickname
+#         return data
