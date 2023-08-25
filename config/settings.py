@@ -95,7 +95,7 @@ MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware', ## 이거 추가!!
 ]
 
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
